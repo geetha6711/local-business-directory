@@ -1,0 +1,411 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LocalConnect - Local Business Directory</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+}
+
+.navbar {
+    background: #0d6efd;
+}
+
+.navbar-brand {
+    font-size: 26px;
+    font-weight: bold;
+    color: white !important;
+}
+
+.hero {
+    min-height: 75vh;
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 60px 0;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 20px;
+}
+
+.search-box {
+    background: white;
+    padding: 14px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.search-box .form-control {
+    min-width: 0;
+}
+
+.voice-status {
+    font-size: 14px;
+    margin: 10px 0 0;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.category-link {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-card {
+    background: white;
+    border-radius: 15px;
+    padding: 22px 8px;
+    min-height: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    transition: .3s;
+}
+
+.category-card i {
+    font-size: 36px;
+    color: #0d6efd;
+    margin-bottom: 14px;
+}
+
+.category-card h5 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    background: #0d6efd;
+    color: white;
+}
+
+.category-card:hover i {
+    color: white;
+}
+
+footer {
+    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .hero {
+        min-height: 65vh;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .category-card {
+        min-height: 125px;
+    }
+
+    .category-card i {
+        font-size: 29px;
+    }
+
+    .category-card h5 {
+        font-size: 14px;
+    }
+
+    .search-box {
+        padding: 9px;
+    }
+
+    .search-box .btn {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <a class="navbar-brand" href="index.html">
+            <i class="fa-solid fa-location-dot"></i>
+            LocalConnect
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="businesses.html">Businesses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="jobs.html">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-light" href="login.html">Login</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<!-- Hero and Search -->
+<section class="hero">
+    <div class="container">
+
+        <h1>Find Trusted Local Businesses Near You</h1>
+
+        <p class="mt-3">
+            Find workers, check availability and contact them easily.
+        </p>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+
+                <form class="search-box"
+                      id="serviceSearchForm"
+                      action="businesses.html"
+                      method="get">
+
+                    <div class="input-group">
+                        <input
+                            type="search"
+                            name="q"
+                            id="serviceSearch"
+                            class="form-control"
+                            placeholder="Search plumbers, electricians..."
+                            aria-label="Search services">
+
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Search
+                        </button>
+
+                        <button class="btn btn-danger"
+                                type="button"
+                                id="voiceSearchBtn"
+                                title="Search using your voice">
+                            <i class="fa-solid fa-microphone"></i>
+                            Voice
+                        </button>
+                    </div>
+
+                    <p id="voiceStatus"
+                       class="voice-status text-dark"
+                       aria-live="polite"></p>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Popular Categories -->
+<section class="container py-5">
+
+    <h2 class="section-title">Popular Categories</h2>
+
+    <div class="row g-4">
+
+        <div class="col-6 col-md-3">
+            <a href="plumber.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-wrench"></i>
+                    <h5>Plumber</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="electrician.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h5>Electrician</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="carpenter.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-hammer"></i>
+                    <h5>Carpenter</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="painter.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-paint-roller"></i>
+                    <h5>Painter</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="ac-repair.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-fan"></i>
+                    <h5>AC Repair</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="cleaning.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-broom"></i>
+                    <h5>Cleaning</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="mechanic.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-car"></i>
+                    <h5>Mechanic</h5>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="movers.html" class="category-link">
+                <div class="category-card">
+                    <i class="fa-solid fa-truck"></i>
+                    <h5>Movers</h5>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<footer class="text-center text-white bg-dark py-3">
+    <p class="mb-0">
+        &copy; 2026 LocalConnect. Find local services easily.
+    </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const voiceBtn = document.getElementById("voiceSearchBtn");
+const searchInput = document.getElementById("serviceSearch");
+const voiceStatus = document.getElementById("voiceStatus");
+const searchForm = document.getElementById("serviceSearchForm");
+
+const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-IN";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    voiceBtn.addEventListener("click", () => {
+        voiceStatus.textContent = "Listening... Speak a service name.";
+        voiceBtn.disabled = true;
+
+        try {
+            recognition.start();
+        } catch (error) {
+            voiceStatus.textContent =
+                "Please try clicking the microphone again.";
+            voiceBtn.disabled = false;
+        }
+    });
+
+    recognition.onresult = (event) => {
+        const spokenText = event.results[0][0].transcript.trim();
+
+        searchInput.value = spokenText;
+        voiceStatus.textContent = "You said: " + spokenText;
+
+        // Submit the spoken search to businesses.html
+        searchForm.requestSubmit();
+    };
+
+    recognition.onerror = (event) => {
+        voiceStatus.textContent =
+            event.error === "not-allowed"
+                ? "Please allow microphone access in your browser."
+                : "Voice search failed. Please try again.";
+    };
+
+    recognition.onend = () => {
+        voiceBtn.disabled = false;
+    };
+
+} else {
+    voiceBtn.addEventListener("click", () => {
+        voiceStatus.textContent =
+            "Voice search is not supported in this browser. Try Chrome.";
+    });
+}
+</script>
+
+</body>
+</html>
+```
